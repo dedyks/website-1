@@ -182,7 +182,7 @@ Cara paling mudah untuk menginstal Minikube di Windows adalah menggunakan [Choco
 choco install minikube
 ```
 
-Setelah Minikube telah selesai diinstal. tutup sesi *CLI* dan matikan ulang. Minikube akan ditambahkan ke *path* kamu secara otomatis.
+Setelah Minikube telah selesai diinstal, tutup sesi *CLI* dan matikan ulang. Minikube akan ditambahkan ke *path* kamu secara otomatis.
 
 ### Instalasi Minikube menggunakan sebuah *installer executable*
 
