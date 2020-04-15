@@ -9,7 +9,7 @@ card:
 
 {{% capture overview %}}
 
-Halaman ini menunjukkan bagaimana caranya untuk instalasi [Minikube](/docs/tutorials/hello-minikube), sebuah alat untuk menjalankan sebuah *node* tunggal Kubernetes kluster di mesin virtual yang ada di komputer kamu.
+Halaman ini menunjukkan cara untuk instalasi [Minikube](/id/docs/tutorials/hello-minikube), sebuah alat untuk menjalankan sebuah *node* tunggal Kubernetes klaster di mesin virtual yang ada di komputer kamu.
 
 {{% /capture %}}
 
@@ -17,7 +17,7 @@ Halaman ini menunjukkan bagaimana caranya untuk instalasi [Minikube](/docs/tutor
 
 {{< tabs name="minikube_before_you_begin" >}}
 {{% tab name="Linux" %}}
-Untuk mengecek apakah virtualisasi didukung di Linux, jalankan perintah berikut dan pastikan keluarannya tidak kosong:
+Untuk mengecek apabila virtualisasi didukung di Linux, jalankan perintah berikut dan pastikan keluarannya tidak kosong:
 ```
 grep -E --color 'vmx|svm' /proc/cpuinfo
 ```
@@ -57,14 +57,14 @@ Hyper-V Requirements:     A hypervisor has been detected. Features required for 
 
 {{% capture steps %}}
 
-# Instalasi minikube
+# Menginstal minikube
 
 {{< tabs name="tab_with_md" >}}
 {{% tab name="Linux" %}}
 
 ### Instalasi kubectl
 
-Pastikan kamu memiliki kubectl terinstal. Kamu bisa menginstal kubectl berdasarkan instruksi di [Instalasi dan Mempersiapkan kubectl](/docs/tasks/tools/install-kubectl/#install-kubectl-on-linux).
+Pastikan kamu mempunyai kubectl terinstal. Kamu bisa menginstal kubectl berdasarkan instruksi di [Instalasi dan Mempersiapkan kubectl](/docs/tasks/tools/install-kubectl/#install-kubectl-on-linux).
 
 ### Instalasi sebuah Hypervisor
 
@@ -122,7 +122,7 @@ brew install minikube
 
 {{% /tab %}}
 {{% tab name="macOS" %}}
-### Install kubectl
+### Instalasi kubectl
 
 Pastikan kamu mempunyai kubectl terinstal. Kamu bisa menginstal kubectl berdasarkan instruksi di [Instalasi dan Mempersiapkan kubectl](/docs/tasks/tools/install-kubectl/#install-kubectl-on-macos).
 
@@ -206,7 +206,7 @@ Untuk menginstal Minikube secara manual di Windows, unduh [`minikube-windows-amd
 
 ## Memastikan instalasi
 
-Untuk memastikan keberhasilan kedua instalasi hypervisor dan Minikube, kamu bisa menjalankan perintah berikut untuk memulai kluster Kubernetes lokal:
+Untuk memastikan keberhasilan kedua instalasi hypervisor dan Minikube, kamu bisa menjalankan perintah berikut untuk memulai klaster Kubernetes lokal:
 {{< note >}}
 
 Untuk pengaturan  `--driver` dengan `minikube start`, masukkan nama hypervisor `<driver_name>` yang kamu instal dengan huruf kecil seperti yang ditunjukan dibawah. Daftar lengkap nilai `--driver` tersedia di [dokumentasi menentukan *driver* VM](https://kubernetes.io/docs/setup/learning-environment/minikube/#specifying-the-vm-driver).
@@ -217,13 +217,13 @@ Untuk pengaturan  `--driver` dengan `minikube start`, masukkan nama hypervisor `
 minikube start --driver=<driver_name>
 ```
 
-Setalah `minikube start` selesai, jalankan perintah dibawah untuk mengecek status kluster:
+Setalah `minikube start` selesai, jalankan perintah dibawah untuk mengecek status klaster:
 
 ```shell
 minikube status
 ```
 
-Jika kluster berjalan, keluaran dari `minikube status` akan mirip seperti ini:
+Jika klaster berjalan, keluaran dari `minikube status` akan mirip seperti ini:
 
 ```
 host: Running
@@ -232,7 +232,7 @@ apiserver: Running
 kubeconfig: Configured
 ```
 
-Setelah kamu memastikan bahwa Minikube berjalan sesuai dengan hypervisor yang telah kamu pilih, kamu dapat melanjutkan untuk memakai Minikube atau menghentikan kluster kamu. Untuk menghentikan cluster, jalankan:
+Setelah kamu memastikan bahwa Minikube berjalan sesuai dengan hypervisor yang telah kamu pilih, kamu dapat melanjutkan untuk memakai Minikube atau menghentikan klaster kamu. Untuk menghentikan klaster, jalankan:
 
 ```shell
 minikube stop
@@ -250,7 +250,7 @@ dan `minikube start` memberikan *error*:
 machine does not exist
 ```
 
-maka kamu dapat membersikan lokal *state* minikube:
+maka kamu dapat membersihkan lokal *state* minikube:
 then you need to clear minikube's local state:
 ```shell
 minikube delete
