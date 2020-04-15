@@ -95,7 +95,7 @@ Tersedia paket *experimental* untuk Minikube, kamu bisa menemukan paket untuk Li
 
 Gunakan alat distribusi paket Linux kamu untuk menginstal paket yang sesuai.
 
-### Instalasi Minikube malalui unduh langsung
+### Instalasi Minikube melalui unduh langsung
 
 Jika kamu tidak menginstal melalui sebuah paket, kamu bisa mengunduh sebuah *stand-alone binary* dan menggunakannya.
 
