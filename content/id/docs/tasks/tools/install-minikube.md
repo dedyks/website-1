@@ -171,7 +171,7 @@ Apabila kamu belum memiliki sebuah Hypervisor terinstal, Instalasi salah satu se
 • [VirtualBox](https://www.virtualbox.org/wiki/Downloads)
 
 {{< note >}}
-Hyper-V hanya dapat berjalan diatas tiga versi Windws 10: Windows 10 Enterprise, Windows 10 Professional, dan Windows 10 Education.
+Hyper-V hanya dapat berjalan diatas tiga versi Windows 10: Windows 10 Enterprise, Windows 10 Professional, dan Windows 10 Education.
 {{< /note >}}
 
 ### Instalasi Minikube menggunakan Chocolatey
