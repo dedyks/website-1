@@ -32,7 +32,7 @@ Apabila kamu melihat `VMX` pada hasil keluaran (seharusnya berwarna), artinya fi
 {{% /tab %}}
 
 {{% tab name="Windows" %}}
-Untuk mengecek apabila virtualisasi didukung di Windows 8 dan keatas, jalankan perintah berikut di terminal Windows atau *command prompt* kamu.
+Untuk mengecek apabila virtualisasi didukung di Windows 8 ke atas, jalankan perintah berikut di terminal Windows atau _command prompt_ kamu.
 
 ```
 systeminfo
@@ -143,7 +143,7 @@ Cara paling mudah untuk menginstal Minikube pada macOS adalah menggunakan [Homeb
 brew install minikube
 ```
 
-Kamu juga bisa menginstalnya dengan mengunduh *stand-alone binary*:
+Kamu juga bisa menginstalnya dengan mengunduh _stand-alone binary_-nya:
 
 ```shell
 curl -Lo minikube https://storage.googleapis.com/minikube/releases/latest/minikube-darwin-amd64 \
