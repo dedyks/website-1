@@ -1,5 +1,5 @@
 ---
-title: Instalasi Minikube
+title: Menginstal Minikube
 content_template: templates/task
 weight: 20
 card:
@@ -9,7 +9,7 @@ card:
 
 {{% capture overview %}}
 
-Halaman ini menunjukkan cara untuk instalasi [Minikube](/id/docs/tutorials/hello-minikube), sebuah alat untuk menjalankan sebuah *node* tunggal Kubernetes klaster di mesin virtual yang ada di komputer kamu.
+Halaman ini menunjukkan cara instalasi [Minikube](/docs/tutorials/hello-minikube), sebuah alat untuk menjalankan sebuah klaster Kubernetes dengan satu Node pada mesin virtual yang ada di komputer kamu.
 
 {{% /capture %}}
 
@@ -17,18 +17,18 @@ Halaman ini menunjukkan cara untuk instalasi [Minikube](/id/docs/tutorials/hello
 
 {{< tabs name="minikube_before_you_begin" >}}
 {{% tab name="Linux" %}}
-Untuk mengecek apabila virtualisasi didukung di Linux, jalankan perintah berikut dan pastikan keluarannya tidak kosong:
+Untuk mengecek apabila virtualisasi didukung pada Linux, jalankan perintah berikut dan pastikan keluarannya tidak kosong:
 ```
 grep -E --color 'vmx|svm' /proc/cpuinfo
 ```
 {{% /tab %}}
 
 {{% tab name="macOS" %}}
-Untuk mengecek apabila virtualisasi didukung di Linux, jalankan perintah berikut di terminal kamu.
+Untuk mengecek apabila virtualisasi didukung di macOS, jalankan perintah berikut di terminal kamu.
 ```
 sysctl -a | grep -E --color 'machdep.cpu.features|VMX'
 ```
-Apabila kamu melihat `VMX` pada hasil keluaran (berwarna), artinya fitur VT-x sudah diaktifkan di mesin kamu.
+Apabila kamu melihat `VMX` pada hasil keluaran (seharusnya berwarna), artinya fitur VT-x sudah diaktifkan di mesin kamu.
 {{% /tab %}}
 
 {{% tab name="Windows" %}}
@@ -37,14 +37,14 @@ Untuk mengecek apabila virtualisasi didukung di Windows 8 dan keatas, jalankan p
 ```
 systeminfo
 ```
-Apabila kamu melihat keluaran berikut, virtualisasi didukung di Windows.
+Jika kamu melihat keluaran berikut, maka virtualisasi didukung di Windows kamu.
 ```
 Hyper-V Requirements:     VM Monitor Mode Extensions: Yes
                           Virtualization Enabled In Firmware: Yes
                           Second Level Address Translation: Yes
                           Data Execution Prevention Available: Yes
 ```
-Apabila kamu melihat keluaran berikut, sistem kamu sudah memiliki sebuah Hypervisor yang telah terinstal dan kamu bisa melewati langkap berikutnya.
+Apabila kamu melihat keluaran berikut, sistem kamu sudah memiliki sebuah Hypervisor yang terinstal dan kamu bisa melewati langkah berikutnya.
 ```
 Hyper-V Requirements:     A hypervisor has been detected. Features required for Hyper-V will not be displayed.
 ```
@@ -62,42 +62,42 @@ Hyper-V Requirements:     A hypervisor has been detected. Features required for 
 {{< tabs name="tab_with_md" >}}
 {{% tab name="Linux" %}}
 
-### Instalasi kubectl
+### Menginstal kubectl
 
-Pastikan kamu mempunyai kubectl terinstal. Kamu bisa menginstal kubectl berdasarkan instruksi di [Instalasi dan Mempersiapkan kubectl](/docs/tasks/tools/install-kubectl/#install-kubectl-on-linux).
+Pastikan kamu mempunyai kubectl yang terinstal. Kamu bisa menginstal kubectl dengan mengikuti instruksi pada halaman [Menginstal dan Menyiapkan kubectl](/docs/tasks/tools/install-kubectl/#install-kubectl-on-linux).
 
-### Instalasi sebuah Hypervisor
+### Menginstal sebuah Hypervisor
 
-Apabila kamu belum menginstal sebuah Hypervisor, Instalasi salah satu sekarang:
+Apabila kamu belum menginstal sebuah Hypervisor, silakan instal salah satu dari:
 
-• [KVM](https://www.linux-kvm.org/), yang menggunakan QEMU
+• [KVM](https://www.linux-kvm.org/), yang juga menggunakan QEMU
 
 • [VirtualBox](https://www.virtualbox.org/wiki/Downloads)
 
-Minikube juga mendukung sebuah opsi `--driver=none` untuk menjalankan komponen - komponen Kubernetes diatas *host* dan tidak didalam VM. Untuk menggunakan *driver* ini memerlukan [Docker](https://www.docker.com/products/docker-desktop) dan sebuah lingkungan Linux bukan sebuah hypervisor.
+Minikube juga mendukung sebuah opsi `--driver=none` untuk menjalankan komponen-komponen Kubernetes pada _host_, bukan di dalam VM. Untuk menggunakan _driver_ ini maka diperlukan [Docker](https://www.docker.com/products/docker-desktop) dan sebuah lingkungan Linux, bukan sebuah hypervisor.
 
-Apabila kamu menggunakan `none` *driver* di Debian atau turunannya, gunakan  paket `.deb` untuk Docker daripada menggunakan paket *snap*, karena paket *snap* tidak berfungsi dengan Minikube.
+Apabila kamu menggunakan _driver_ `none` pada Debian atau turunannya, gunakan  paket (_package_) `.deb` untuk Docker daripada menggunakan paket _snap_-nya, karena paket _snap_ tidak berfungsi dengan Minikube.
 Kamu bisa mengunduh paket `.deb` dari [Docker](https://www.docker.com/products/docker-desktop).
 
 {{< caution >}}
-*Driver* VM `none` dapat menyebabkan masalah pada keamanan dan kehilangan data. Sebelum menggunakan *driver* VM, periksa [dokumentasi ini](https://minikube.sigs.k8s.io/docs/reference/drivers/none/) untuk informasi lebih lanjut.
+*Driver* VM `none` dapat menyebabkan masalah pada keamanan dan kehilangan data. Sebelum menggunakan opsi `--driver=none`, periksa [dokumentasi ini](https://minikube.sigs.k8s.io/docs/reference/drivers/none/) untuk informasi lebih lanjut.
 {{< /caution >}}
 
-Minikube juga mendukung opsi `vm-driver=podman` yang mirip dengan *driver* Docker. Podman yang berjalan dengan hak istimewa *superuser* adalah cara terbaik untuk memastikan kontainer - kontainer kamu memiliki akses penuh ke semua fitur yang ada di sistem kamu..
+Minikube juga mendukung opsi `vm-driver=podman` yang mirip dengan _driver_ Docker. Podman yang berjalan dengan hak istimewa _superuser_ (pengguna _root_) adalah cara terbaik untuk memastikan kontainer-kontainer kamu memiliki akses penuh ke semua fitur yang ada pada sistem kamu.
 
 {{< caution >}}
-*Driver* `podman` memerlukan *root* untuk menjalankan kontainer karena akun pengguna reguler tidak memiliki akses penuh ke semua fitur sistem operasi yang mungkin kontainer perlukan.
+_Driver_ `podman` memerlukan kontainer yang berjalan dengan akses _root_ karena akun pengguna biasa tidak memiliki akses penuh ke semua fitur sistem operasi yang mungkin diperlukan oleh kontainer.
 {{< /caution >}}
 
-### Instalasi Minikube menggunakan paket
+### Menginstal Minikube menggunakan sebuah paket
 
-Tersedia paket *experimental* untuk Minikube, kamu bisa menemukan paket untuk Linux (AMD64) dari halaman  [*releases*](https://github.com/kubernetes/minikube/releases) Minikube di GitHub.
+Tersedia paket uji coba untuk Minikube, kamu bisa menemukan paket untuk Linux (AMD64) di laman [rilisnya](https://github.com/kubernetes/minikube/releases) Minikube di GitHub.
 
-Gunakan alat distribusi paket Linux kamu untuk menginstal paket yang sesuai.
+Gunakan alat instalasi paket pada distribusi Linux kamu untuk menginstal paket yang sesuai.
 
-### Instalasi Minikube melalui unduh langsung
+### Menginstal Minikube melalui pengunduhan langsung
 
-Jika kamu tidak menginstal melalui sebuah paket, kamu bisa mengunduh sebuah *stand-alone binary* dan menggunakannya.
+Jika kamu tidak menginstal melalui sebuah paket, kamu bisa mengunduh sebuah _stand-alone binary_ dan menggunakannya.
 
 
 ```shell
@@ -105,16 +105,16 @@ curl -Lo minikube https://storage.googleapis.com/minikube/releases/latest/miniku
   && chmod +x minikube
 ```
 
-Berikut adalah cara mudah untuk menambahkan *executable* Minikube ke *path* kamu.
+Berikut adalah cara mudah untuk menambahkan program Minikube ke _path_ kamu.
 
 ```shell
 sudo mkdir -p /usr/local/bin/
 sudo install minikube /usr/local/bin/
 ```
 
-### Instalasi Minikube menggunakan Homebrew
+### Menginstal Minikube menggunakan Homebrew
 
-Sebagai alternatif lain, kamu bisa menginstal Minikube menggunakan Linux [Homebrew](https://docs.brew.sh/Homebrew-on-Linux):
+Sebagai alternatif, kamu bisa menginstal Minikube menggunakan Linux [Homebrew](https://docs.brew.sh/Homebrew-on-Linux):
 
 ```shell
 brew install minikube
@@ -124,11 +124,11 @@ brew install minikube
 {{% tab name="macOS" %}}
 ### Instalasi kubectl
 
-Pastikan kamu mempunyai kubectl terinstal. Kamu bisa menginstal kubectl berdasarkan instruksi di [Instalasi dan Mempersiapkan kubectl](/docs/tasks/tools/install-kubectl/#install-kubectl-on-macos).
+Pastikan kamu mempunyai kubectl yang terinstal. Kamu bisa menginstal kubectl berdasarkan instruksi pada laman [Menginstal dan Menyiapkan kubectl](/docs/tasks/tools/install-kubectl/#install-kubectl-on-macos).
 
 ### Instalasi sebuah Hypervisor
 
-Apabila kamu belum memiliki sebuah Hypervisor terinstal, Instalasi salah satu sekarang:
+Apabila kamu belum menginstal sebuah Hypervisor, silakan instal salah satu  dari:
 
 • [HyperKit](https://github.com/moby/hyperkit)
 
@@ -137,7 +137,7 @@ Apabila kamu belum memiliki sebuah Hypervisor terinstal, Instalasi salah satu se
 • [VMware Fusion](https://www.vmware.com/products/fusion)
 
 ### Instalasi Minikube
-Cara paling mudah untuk menginstal Minikube di macOS adalah menggunakan [Homebrew](https://brew.sh):
+Cara paling mudah untuk menginstal Minikube pada macOS adalah menggunakan [Homebrew](https://brew.sh):
 
 ```shell
 brew install minikube
@@ -150,7 +150,7 @@ curl -Lo minikube https://storage.googleapis.com/minikube/releases/latest/miniku
   && chmod +x minikube
 ```
 
-Berikut adalah cara mudah untuk menambahkan *executable* Minikube ke *path* kamu.
+Berikut adalah cara mudah untuk menambahkan program Minikube ke _path_ kamu.
 
 ```shell
 sudo mv minikube /usr/local/bin
@@ -160,37 +160,37 @@ sudo mv minikube /usr/local/bin
 {{% tab name="Windows" %}}
 ### Instalasi kubectl
 
-Pastikan kamu mempunyai kubectl terinstal. Kamu bisa menginstal kubectl berdasarkan instruksi di [Instalasi dan Mempersiapkan kubectl](/docs/tasks/tools/install-kubectl/#install-kubectl-on-windows).
+Pastikan kamu mempunyai kubectl yang terinstal. Kamu bisa menginstal kubectl berdasarkan instruksi pada halaman [Menginstal dan Menyiapkan kubectl](/docs/tasks/tools/install-kubectl/#install-kubectl-on-windows).
 
-### Instalasi sebuah Hypervisor
+### Menginstal sebuah Hypervisor
 
-Apabila kamu belum memiliki sebuah Hypervisor terinstal, Instalasi salah satu sekarang:
+Apabila kamu belum menginstal sebuah Hypervisor, silakan instal salah satu dari:
 
 • [Hyper-V](https://msdn.microsoft.com/en-us/virtualization/hyperv_on_windows/quick_start/walkthrough_install)
 
 • [VirtualBox](https://www.virtualbox.org/wiki/Downloads)
 
 {{< note >}}
-Hyper-V hanya dapat berjalan diatas tiga versi Windows 10: Windows 10 Enterprise, Windows 10 Professional, dan Windows 10 Education.
+Hyper-V hanya dapat berjalan pada tiga versi dari Windows 10: Windows 10 Enterprise, Windows 10 Professional, dan Windows 10 Education.
 {{< /note >}}
 
-### Instalasi Minikube menggunakan Chocolatey
+### Menginstal Minikube menggunakan Chocolatey
 
-Cara paling mudah untuk menginstal Minikube di Windows adalah menggunakan [Chocolatey](https://chocolatey.org/) (jalankan sebagai administrator):
+Cara paling mudah untuk menginstal Minikube pada Windows adalah menggunakan [Chocolatey](https://chocolatey.org/) (jalankan sebagai administrator):
 
 ```shell
 choco install minikube
 ```
 
-Setelah Minikube telah selesai diinstal, tutup sesi *CLI* dan matikan ulang. Minikube akan ditambahkan ke *path* kamu secara otomatis.
+Setelah Minikube telah selesai diinstal, tutup sesi CLI dan hidupkan ulang CLI-nya. Minikube akan ditambahkan ke _path_ kamu secara otomatis.
 
-### Instalasi Minikube menggunakan sebuah *installer executable*
+### Menginstal Minikube menggunakan sebuah program penginstal 
 
-Untuk menginstal Minikube secara manual di Windows menggunakan [Windows Installer](https://docs.microsoft.com/en-us/windows/desktop/msi/windows-installer-portal), unduh [`minikube-installer.exe`](https://github.com/kubernetes/minikube/releases/latest/download/minikube-installer.exe) dan jalankan *installer*.
+Untuk menginstal Minikube secara manual pada Windows menggunakan [Windows Installer](https://docs.microsoft.com/en-us/windows/desktop/msi/windows-installer-portal), unduh [`minikube-installer.exe`](https://github.com/kubernetes/minikube/releases/latest/download/minikube-installer.exe) dan jalankan program penginstal tersebut.
 
-### Installasi Minikube melalui unduh langsung
+### Menginstal Minikube melalui pengunduhan langsung
 
-Untuk menginstal Minikube secara manual di Windows, unduh [`minikube-windows-amd64`](https://github.com/kubernetes/minikube/releases/latest), ubah nama menjadi `minikube.exe`, dan tambahkan ke *path* kamu.
+Untuk menginstal Minikube secara manual pada Windows, unduh [`minikube-windows-amd64`](https://github.com/kubernetes/minikube/releases/latest), ubah nama menjadi `minikube.exe`, dan tambahkan ke _path_ kamu.
 
 {{% /tab %}}
 {{< /tabs >}}
@@ -206,10 +206,10 @@ Untuk menginstal Minikube secara manual di Windows, unduh [`minikube-windows-amd
 
 ## Memastikan instalasi
 
-Untuk memastikan keberhasilan kedua instalasi hypervisor dan Minikube, kamu bisa menjalankan perintah berikut untuk memulai klaster Kubernetes lokal:
+Untuk memastikan keberhasilan kedua instalasi hypervisor dan Minikube, kamu bisa menjalankan perintah berikut untuk memulai sebuah klaster Kubernetes lokal:
 {{< note >}}
 
-Untuk pengaturan  `--driver` dengan `minikube start`, masukkan nama hypervisor `<driver_name>` yang kamu instal dengan huruf kecil seperti yang ditunjukan dibawah. Daftar lengkap nilai `--driver` tersedia di [dokumentasi menentukan *driver* VM](https://kubernetes.io/docs/setup/learning-environment/minikube/#specifying-the-vm-driver).
+Untuk pengaturan  `--driver` dengan `minikube start`, masukkan nama hypervisor `<driver_name>` yang kamu instal dengan huruf kecil seperti yang ditunjukan dibawah. Daftar lengkap nilai `--driver` tersedia di [dokumentasi menentukan *driver* VM](/docs/setup/learning-environment/minikube/#specifying-the-vm-driver).
 
 {{< /note >}}
 
@@ -217,13 +217,13 @@ Untuk pengaturan  `--driver` dengan `minikube start`, masukkan nama hypervisor `
 minikube start --driver=<driver_name>
 ```
 
-Setalah `minikube start` selesai, jalankan perintah dibawah untuk mengecek status klaster:
+Setalah `minikube start` selesai, jalankan perintah di bawah untuk mengecek status klaster:
 
 ```shell
 minikube status
 ```
 
-Jika klaster berjalan, keluaran dari `minikube status` akan mirip seperti ini:
+Jika klasternya berjalan, keluaran dari `minikube status` akan mirip seperti ini:
 
 ```
 host: Running
@@ -232,7 +232,7 @@ apiserver: Running
 kubeconfig: Configured
 ```
 
-Setelah kamu memastikan bahwa Minikube berjalan sesuai dengan hypervisor yang telah kamu pilih, kamu dapat melanjutkan untuk memakai Minikube atau menghentikan klaster kamu. Untuk menghentikan klaster, jalankan:
+Setelah kamu memastikan bahwa Minikube berjalan sesuai dengan hypervisor yang telah kamu pilih, kamu dapat melanjutkan untuk menggunakan Minikube atau menghentikan klaster kamu. Untuk menghentikan klaster, jalankan:
 
 ```shell
 minikube stop
@@ -245,13 +245,12 @@ Jika sebelumnya kamu pernah menginstal Minikube, dan menjalankan:
 minikube start
 ```
 
-dan `minikube start` memberikan *error*:
+dan `minikube start` memberikan pesan kesalahan:
 ```
 machine does not exist
 ```
 
-maka kamu dapat membersihkan lokal *state* minikube:
-then you need to clear minikube's local state:
+maka kamu perlu membersihkan _state_ lokal Minikube:
 ```shell
 minikube delete
 ```
